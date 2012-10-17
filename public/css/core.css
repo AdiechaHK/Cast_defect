@@ -1,0 +1,8 @@
+input[type="text"], input[type="password"] {
+	height: 28px;
+}
+
+#bodyContent {
+	margin-top: 50px;
+}
+
