@@ -17,7 +17,7 @@
         <div class="row-fluid">
 
             <?php
-                $sidebar = array('casting' => "", 'defects' => "active", 'param'=>"");
+                $sidebar = array('casting' => "", 'defects' => "", 'param'=>"active");
                 include 'sidebar.php' 
             ?>
             <div class="span9"> <!-- main page -->
@@ -28,9 +28,9 @@
 
                 <div class="row-fluid">
 
-                  <a href="new_defect.php" class="btn btn-primary">
+                  <a href="new_param.php" class="btn btn-primary">
 
-                    <i class="icon-plus icon-white"></i> Add Defect
+                    <i class="icon-plus icon-white"></i> Add Parameter
 
                   </a>
 
@@ -56,7 +56,7 @@
  
                    include 'dbconfig.php';
 
-                    $query = 'select id, title, image, parameter, causesAndRemedies from defects;';
+                    $query = 'select id, title from parameter;';
 
                     $result = mysql_query($query);
 
@@ -65,11 +65,8 @@
                         echo "<tr>";
                         echo "<td>".$row['title']."</td>";
                         echo "<td>";
-                        echo "<a href=\"edit_defect.php?id=".$row['id']."\" class=\"btn btn-info\">Edit</a> &nbsp";
-                        echo "<a href=\"modify_image.php?id=".$row['id']."\" class=\"btn\">Change Image</a> &nbsp";
-                        echo "<a href=\"modify_param.php?id=".$row['id']."\" class=\"btn\">Change Parameter</a> &nbsp";
-                        echo "<a href=\"modify_cr.php?id=".$row['id']."\" class=\"btn\">Change Causes&Remedies</a> &nbsp";
-                        echo "<a href=\"delete_defect.php?id=".$row['id']."\" class=\"btn btn-danger\">Delete</a>";
+                        echo "<a href=\"edit_param.php?id=".$row['id']."\" class=\"btn btn-info\">Edit</a> &nbsp";
+                        echo "<a href=\"delete_param.php?id=".$row['id']."\" class=\"btn btn-danger\">Delete</a>";
                         echo "</td>";
                         echo "</tr>";
                       }

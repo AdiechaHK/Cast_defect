@@ -11,6 +11,6 @@ if(mysql_num_rows($result) == 1) {
 	$result = mysql_query($query);
 } else {
 	$_SESSION['user_error'] = "Record conflicts";
-	header('location: adminPanel.php');
 } 
+header('location: adminPanel.php');
 ?>

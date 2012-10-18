@@ -1,7 +1,10 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-    <a class="brand" href="./">Cast Defect</a>
+      <a class="brand" href="./">Cast Defect</a>
+      <ul class="nav">
+        <li><a href="defects.php">types of defects</a></li>
+      </ul>
       <ul class="nav pull-right" id="accBox">
         <?php if(isset($_SESSION['user_name'])) { ?>
           <li><a href="adminPanel.php">Admin Pannel</a></li>

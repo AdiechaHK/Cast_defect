@@ -18,7 +18,7 @@ if($id == -1){
     $query = "update defects set title=\"".$title."\", description=\"".$description."\" where id=\"".$id."\";";
 
   }
-
+  echo $query;
   $result = mysql_query($query);
 
   header("location: defect_list.php");
