@@ -1,6 +1,6 @@
-This is a web site for a mechanical student
+Title: This is a web site for a mechanical student
 
->> It's presenting  his project [ Sand Casting ]
+It's presenting  his project [ Sand Casting ]
 
 >> Project tacken By: (Students of Diploma mechanical)
     - Jaydeep Dinesh Chavda
