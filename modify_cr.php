@@ -18,16 +18,12 @@
     }
   ?>
   <div class="container" id="bodyContent">
-    <h2>List of parameter for <?php echo $title; ?></h2>
-    <div class="row-fluid">
-      <a href="#paramModal" class="btn btn-primary" data-toggle="modal">
-        <i class="icon-plus icon-white"></i> Add Parameter
-      </a>
-    </div><br>
+    <h2>List of Causes/Remedies for <?php echo $title; ?></h2>
+    <br>
     <table class="table" id="tbl-param">
       <thead>
         <tr>
-          <th>Title</th>
+          <th>Type</th>
           <th>Details</th>
           <th>Actions</th>
         </tr>
@@ -35,14 +31,14 @@
       <tbody>
         <?php
           // Code to place existing parameters
-          $query = "select id, param, block from def_param where defect=\"".$def."\";";
+          $query = "select id, type, block from cos_rem where defect=\"".$def."\";";
           $result = mysql_query($query);
           while(list($id, $param, $block) = mysql_fetch_array($result)) {
             ?>
             <tr>
               <td><?php echo $param; ?></td>
               <td><?php echo $block; ?></td>
-              <td><a class="btn btn-danger" href=<?php echo "del_param.php?id=$id&def=$def"; ?> >
+              <td><a class="btn btn-danger" href=<?php echo "del_cr.php?id=$id&def=$def"; ?> >
                 <i class="icon-trash icon-white"></i>  Delete 
               </a>
             </tr>
@@ -50,17 +46,12 @@
           }
         ?>
         <tr class="edit">
-          <form action="inst_param.php" method="POST">
+          <form action="inst_cr.php" method="POST">
           <td>
             <input type="hidden" name="def" value=<?php echo $def; ?> >
-            <select name="title">
-              <?php
-                $query = 'select title from parameter;';
-                $result = mysql_query($query);
-                while($row = mysql_fetch_array($result)){
-                  echo "<option value=\"".$row['title']."\" >".$row['title']."</option>";
-                }
-              ?>
+            <select name="type">
+              <option value="Causes">Causes</option>
+              <option value="Remedies">Remedies</option>
             </select>
           </td>
           <td>

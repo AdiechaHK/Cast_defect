@@ -23,26 +23,30 @@
     <?php if($imgFlag) { ?>
     <div>
       <?php
-        $query = "select url from image where defect=\"".$def."\";";
+        $query = "select image from image where defect=\"".$def."\";";
         $result = mysql_query($query);
         if(mysql_num_rows($result)==1){
           $row = mysql_fetch_array($result);
-          $url = $row['url'];
-          $src = $url;
+          $url = $row['image'];
         } else {
-          $query = "select entries from count where entity=\"def_img\";";
-          $result = mysql_query($query);
-          $row = mysql_fetch_array($result);
-          $url = "private/img/defect_".$row['entries'];
+          echo "Image not set yet.";
+          // $query = "select entries from count where entity=\"def_img\";";
+          // $result = mysql_query($query);
+          // $row = mysql_fetch_array($result);
+          // $url = "private/img/defect_".$row['entries'];
         }
       ?>
-      <img alt="No image" class="img-rounded" width="300" height="200" src=<?php echo $src; ?> >
+      <img alt="No image" class="img-rounded" src=<?php echo $url; ?> >
     </div>
-    <?php } ?>
+    <?php } ?><br>
     <form action="inst_image.php" method="POST" enctype="multipart/form-data">
-      <input type="hidden" name="url" value=<?php echo $url; ?> >
-      <input type="file" name="file"><br>
-      <input class="btn" type="submit" value="submit">
+      <input type="hidden" name="def" value=<?php echo $def; ?> >
+      <input type="file" name="file"><br><br>
+      <a href="defect_list.php" class="btn"><i class="icon-hand-left"></i>  Back</a> &nbsp;
+      <?php if(isset($url)) { ?>
+        <a href=<?php echo "del_image.php?def=".$def; ?> class="btn btn-danger"><i class="icon-trash icon-white"></i>  Delete</a> &nbsp;
+      <?php } ?>
+      <button class="btn btn-success" type="submit"><i class="icon-ok icon-white"></i> Update</button>
     </form>
   </div>
   <?php include 'footer.php'; ?>

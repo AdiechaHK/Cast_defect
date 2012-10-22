@@ -3,7 +3,7 @@
     <div class="container">
       <a class="brand" href="./">Cast Defect</a>
       <ul class="nav">
-        <li><a href="defects.php">types of defects</a></li>
+        <li><a href="defects.php">Types of Defects</a></li>
       </ul>
       <ul class="nav pull-right" id="accBox">
         <?php if(isset($_SESSION['user_name'])) { ?>
