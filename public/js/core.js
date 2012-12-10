@@ -1,70 +1,92 @@
 $(document).ready(function(){
-  $('.carousel').carousel();
-  
-  $('#myModal').on('hide', function(){
-    $('#ajaxSignInResContainer').remove();
+  $("#remove-alert-error").click(function(){
+    url = $(this).attr('ref');
+    $.ajax({
+      url: url
+    });
   });
 
-  // SignIn function
-  $('#signIn').click(function(){
+  $(".param-edit-btn").click(function() {
+    var $line = $(this).parents('tr');
+    var $form = $('#form');
+    $('#index').val($(this).attr('def-param'));
+    $('#block').html($line.children('.block').html());
+    var title = $line.children('.title').html();
+    var opts = $('#title option');
+    console.log("title"+title);
+    console.log("Options array >>> ");
+    opts.each(function(i, ele){
+      var tmp = $(ele).html();
+      console.log(tmp);
+      if(tmp == title){
+        $(ele).attr("selected", "selected");
+      }
+    });
+  });
 
-    var newDiv = $('#ajaxSignInResContainer');
-    if(newDiv.length == 0) {
-      newDiv = $('<div/>', {
-        id: 'ajaxSignInResContainer',
-        class : 'waiting alert',
-        html: 'Please wait ...'
-      });
-      $('#myModal .modal-body').append(newDiv);
-    }
-
-    // prepare data
+  $("#param-save-btn").click(function() {
+    var $form = $(this).parents('tr');
+    var url = $form.attr('form-target');
+    var opts = $('#title option');
+    var id = $('#index').val();
     var data = {
-      email: $('#inputEmail').val(),
-      password: $('#inputPassword').val()
+      block: $('#block').val(),
+      param: $('#title').val()
+    };
+    if(id!="nan"){
+      data['id'] = id;
     }
-
-    // AJAX call
     $.ajax({
-      type: 'POST',
-      url: 'signIn.php',
+      type: "POST",
+      url: url,
       data: data,
       success: function(data) {
-        var json_data = $.parseJSON(data);
-        var class_to_add;
-        if(json_data.error){
-          if(!($('#ajaxSignInResContainer').hasClass('alert-error')))
-            $('#ajaxSignInResContainer').addClass('alert-error');
-          $('#ajaxSignInResContainer').html(json_data.content);
-        } else {
-          if($('#ajaxSignInResContainer').hasClass('alert-error'))
-            $('#ajaxSignInResContainer').removeClass('alert-error');
-          $('#ajaxSignInResContainer').addClass('alert-success');
-          $('#accBox').html(json_data.content);
-          $('#myModal').modal('hide');
-        }
-      },
-      fail: function(){
-        console.log("Ajax fails");
+        location.reload();
+        $('li.active').removeClass('active');
+        $('li.param').addClass('active');
       }
     });
   });
 
-  // SignOut function
-  $('#signOut').click(function(){
+  $(".cr-edit-btn").click(function() {
+  	var $line = $(this).parents('tr');
+    var $form = $('#cr-form');
+    $('#cr-index').val($(this).attr('cr-id'));
+    $('#cr-block').html($line.children('.block').html());
+    var type = $line.children('.type').html();
+    var opts = $('#cr-type option');
+    console.log(type);
+    opts.each(function(i, ele){
+      var tmp = $(ele).val();
+      console.log(" >>> "+tmp);
+      if(tmp == type){
+        $(ele).attr("selected", "selected");
+      }
+    });
+  });
+
+  $("#cr-save-btn").click(function() {
+    var $form = $(this).parents('tr');
+    var url = $form.attr('form-target');
+    var opts = $('#title option');
+    var id = $('#cr-index').val();
+    var data = {
+      block: $('#cr-block').val(),
+      type: $('#cr-type').val()
+    };
+    if(id!="nan"){
+      data['id'] = id;
+    }
+    alert(url);
     $.ajax({
-      type: 'POST',
-      url: 'signOut.php',
+      type: "POST",
+      url: url,
+      data: data,
       success: function(data) {
-        var json_data = $.parseJSON(data);
-        if(!json_data.error){
-          $('#accBox').html(json_data.content);
-        }
-      },
-      fail: function(){
-        console.log("Ajax fails");
+        location.reload();
+        $('li.active').removeClass('active');
+        $('li.param').addClass('active');
       }
     });
   });
-
 });
