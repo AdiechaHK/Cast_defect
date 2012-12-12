@@ -43,6 +43,12 @@ class Casting_model extends CI_Model {
     return $query->row();
   }
 
+  public function list_all()
+  {
+    $query = $this->db->query('select title, description, image from `casting`;');
+    return $query->result();
+  }
+
   public function new_item()
   {
     return array('title' => "",

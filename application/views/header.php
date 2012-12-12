@@ -13,17 +13,19 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="./">Cast Defect</a>
+      <a class="brand" ref="tooltip" title="Bring you to home page." href=<?php echo site_url('/'); ?> >Cast Defect</a>
       <ul class="nav">
         <li><?php echo anchor("home/defects_list","Types of Defects"); ?></li>
+        <li><?php echo anchor("home/history","History"); ?></li>
+        <!-- <li><?php //echo anchor("home/defects_list","Types of Defects"); ?></li> -->
       </ul>
       <ul class="nav pull-right" id="accBox">
         <?php if($user_name) { ?>
-          <li><?php echo anchor("panel/home", "Admin Panel"); ?></li>
+          <li><?php echo anchor("panel/home", "Admin Panel", array('rel' => 'tooltip', 'title' => 'To change contents of web site.')); ?></li>
           <li class="divider-vertical"></li>
-          <li><?php echo anchor("admin/sign_out", "Sign Out"); ?></li>
+          <li><?php echo anchor("admin/sign_out", "Sign Out", array('rel' => 'tooltip', 'title' => 'Make safe shutdown your account.')); ?></li>
         <?php } else { ?>
-          <li><?php echo anchor("admin/sign_in", "Sign In"); ?></li>
+          <li><?php echo anchor("admin/sign_in", "Sign In", array('rel' => 'tooltip', 'title' => 'To enter into your account')); ?></li>
         <?php } ?>
       </ul>
     </div>

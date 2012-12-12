@@ -77,7 +77,6 @@ $(document).ready(function(){
     if(id!="nan"){
       data['id'] = id;
     }
-    alert(url);
     $.ajax({
       type: "POST",
       url: url,

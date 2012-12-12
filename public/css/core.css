@@ -25,3 +25,19 @@ input[type="text"], input[type="password"] {
 	right: 200px;
 	z-index: 20;
 }
+
+#myCarousel {
+	height: 600px;
+	width: 800px;
+	margin: auto;
+}
+
+.main-block {
+	/*background-color: gray;*/
+	
+}
+
+.sub-block {
+	/*background-color: pink;*/
+
+}

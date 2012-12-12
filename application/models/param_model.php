@@ -49,7 +49,7 @@ class Param_model extends CI_Model {
   }
 
   public function param_of_defect($id){
-    $query_str = "SELECT b.id, a.title, b.block FROM parameter a, def_param b WHERE a.id = b.param;";
+    $query_str = "SELECT b.id, a.title, b.block FROM parameter a, def_param b WHERE a.id = b.param AND b.defect = $id;";
     $query = $this->db->query($query_str);
     return $query->result();
   }
